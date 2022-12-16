@@ -3,8 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign up</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script href="js/validation.js" defer></script>
 </head>
 <body>
+<div class="header container-fluid mb-3">
+    <a href="index.html">Polls</a>
+    <a href="create.html">Create Poll</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign up</a>
+</div>
 
+<div class="container mb-3">
+    <form action="signup.php" method="post" name="signup-form">
+        <div class="row mb-3">
+            <label class="col-form-label col-sm-2" for="name">Name</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="name" name="name" placeholder="Name">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-form-label col-sm-2" for="username">Username</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="username" name="username" placeholder="Username">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-form-label col-sm-2" for="email">Email (optional)</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="email" name="email" placeholder="Email">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-form-label col-sm-2" for="password">Password</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="password" name="password" type="password" placeholder="Password">
+            </div>
+        </div>
+
+        <input class="btn btn-primary" id="submit" type="submit" value="Sign up">
+    </form>
+</div>
 </body>
 </html>
