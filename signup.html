@@ -5,7 +5,7 @@
     <title>Sign up</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
-    <script href="js/validation.js" defer></script>
+    <script src="js/validation.js" defer></script>
 </head>
 <body>
 <div class="header container-fluid mb-3">
@@ -19,29 +19,47 @@
     <form action="signup.php" method="post" name="signup-form">
         <div class="row mb-3">
             <label class="col-form-label col-sm-2" for="name">Name</label>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 <input class="form-control" id="name" name="name" placeholder="Name">
+                <div class="name-validation">
+                    <p class="mb-0">Name must be at most 50 characters</p>
+                </div>
             </div>
         </div>
 
         <div class="row mb-3">
             <label class="col-form-label col-sm-2" for="username">Username</label>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 <input class="form-control" id="username" name="username" placeholder="Username">
+                <div class="username-validation">
+                    <p class="mb-0">Username is taken</p>
+                </div>
             </div>
         </div>
 
         <div class="row mb-3">
             <label class="col-form-label col-sm-2" for="email">Email (optional)</label>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 <input class="form-control" id="email" name="email" placeholder="Email">
+                <div class="email-validation">
+                    <p class="mb-0">Email is invalid or taken</p>
+                </div>
             </div>
         </div>
 
         <div class="row mb-3">
             <label class="col-form-label col-sm-2" for="password">Password</label>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 <input class="form-control" id="password" name="password" type="password" placeholder="Password">
+                <div class="password-validation">
+                    <p class="mb-0">Password must contain:</p>
+                    <ul>
+                        <li>At least 8 characters</li>
+                        <li>At least 1 lowercase character</li>
+                        <li>At least 1 uppercase character</li>
+                        <li>At least 1 number or special character</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
