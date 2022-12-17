@@ -16,16 +16,18 @@ let usernameValidation = document.getElementById("username-validation");
 let emailValidation = document.getElementById("email-validation");
 let passwordValidation = document.getElementById("password-validation");
 
-nameField.addEventListener("keyup", validateName);
-usernameField.addEventListener("keyup", validateUsername);
-emailField.addEventListener("keyup", validateEmail);
-passwordField.addEventListener("keyup", validatePassword);
+nameField.addEventListener("input", validateName);
+usernameField.addEventListener("input", validateUsername);
+emailField.addEventListener("input", validateEmail);
+passwordField.addEventListener("input", validatePassword);
 
 hideValidationRequirements();
 toggleSubmitButton();
 
 function validateName() {
-    if (nameField.value.length > 50) {
+    let nameLength = nameField.value.length;
+
+    if (nameLength < 3 || nameLength > 50) {
         nameValidation.style.display = "block";
         validName = false;
     } else {
@@ -38,12 +40,16 @@ function validateName() {
 function validateUsername() {
     usernameValidation.style.display = "block";
 
+    validUsername = true;
+
     // check if username is taken
     toggleSubmitButton();
 }
 
 function validateEmail() {
     emailValidation.style.display = "block";
+
+    validEmail = true;
 
     // check if email is invalid
     // check if email is taken
@@ -97,7 +103,7 @@ function hasValidInformation() {
 
 function toggleSubmitButton() {
     if (hasValidInformation()) {
-        submitButton.enabled = true;
+        submitButton.disabled = false;
     } else {
         submitButton.disabled = true;
     }
