@@ -11,7 +11,15 @@ if (hasValidInfo()) {
 
 function createAccount($name, $username, $email, $password)
 {
-    $mysqli = mysqli_connect("", "", "", "");
+    $fileName = "config.ini";
+    $sampleFileName = "config-sample.ini";
+
+    if (!file_exists($fileName)) {
+        throw new Exception("\"$fileName\" not found. See \"$sampleFileName\" for more details.");
+    }
+
+    $configArr = parse_ini_file($fileName);
+    $mysqli = mysqli_connect($configArr["hostname"], $configArr["username"], $configArr["password"], $configArr["database"]);
 
     $statement = $mysqli->prepare("INSERT INTO account(name, username, email, password) VALUES(?, ?, ?, ?)");
     $statement->bind_param("ssss", $name, $username, $email, $password);
