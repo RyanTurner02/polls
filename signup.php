@@ -5,36 +5,43 @@ $username = $_POST["username"];
 $email = $_POST["email"];
 $password = $_POST["password"];
 
-echo "Name: $name" . "<br>";
-echo "Username: $username" . "<br>";
-echo "Email: $email" . "<br>";
-echo "Password: $password" . "<br>";
-
-if(!hasValidInfo()) {
-    // break
+if (hasValidInfo()) {
+    createAccount($name, $username, $email, $password);
 }
 
-connectToDatabase();
+function createAccount($name, $username, $email, $password)
+{
+    $mysqli = mysqli_connect("", "", "", "");
 
-function connectToDatabase() {
+    $statement = $mysqli->prepare("INSERT INTO account(name, username, email, password) VALUES(?, ?, ?, ?)");
+    $statement->bind_param("ssss", $name, $username, $email, $password);
+    $statement->execute();
+
+    header("Location: index.html");
+    exit;
 }
 
-function hasValidInfo() {
+function hasValidInfo()
+{
     return nameIsValid() && usernameIsValid() && emailIsValid() && passwordIsValid();
 }
 
-function nameIsValid() {
+function nameIsValid()
+{
     return true;
 }
 
-function usernameIsValid() {
+function usernameIsValid()
+{
     return true;
 }
 
-function emailIsValid() {
+function emailIsValid()
+{
     return true;
 }
 
-function passwordIsValid() {
+function passwordIsValid()
+{
     return true;
 }
