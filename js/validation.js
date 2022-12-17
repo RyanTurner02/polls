@@ -25,11 +25,11 @@ hideValidationRequirements();
 toggleSubmitButton();
 
 function validateName() {
-    nameValidation.style.display = "block";
-
     if (nameField.value.length > 50) {
+        nameValidation.style.display = "block";
         validName = false;
     } else {
+        nameValidation.style.display = "none";
         validName = true;
     }
     toggleSubmitButton();
@@ -51,11 +51,10 @@ function validateEmail() {
 }
 
 function validatePassword() {
-    passwordValidation.style.display = "block";
-
     let flag = true;
     let password = passwordField.value;
     let numberRegex = /\d/;
+    // TODO: specialCharacterRegex
     let lowerCaseRegex = /[a-z]/;
     let upperCaseRegex = /[A-Z]/;
 
@@ -77,6 +76,9 @@ function validatePassword() {
 
     if (flag) {
         validPassword = true;
+        passwordValidation.style.display = "none";
+    } else {
+        passwordValidation.style.display = "block";
     }
 
     toggleSubmitButton();
