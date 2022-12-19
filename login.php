@@ -28,7 +28,7 @@ function login($username, $password, $rememberMe)
     $result = $statement->get_result();
 
     if (mysqli_num_rows($result) == 0) { // check for user not found (empty row)
-        header("Location: login.php?error=invalidlogin");
+        header("Location: login.php?error=invalid+login");
     } else { // user found (row is not empty)
         $cookieName = "user_session";
         $cookieValue = "value";
