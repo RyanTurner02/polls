@@ -66,7 +66,7 @@ function login($username, $password, $rememberMe)
     </div>
     <div class="d-flex flex-row">
         <a class="p-2" href="login.php">Login</a>
-        <a class="p-2" href="signup.html">Sign up</a>
+        <a class="p-2" href="signup.php">Sign up</a>
     </div>
 </div>
 
