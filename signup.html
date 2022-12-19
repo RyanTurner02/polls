@@ -27,9 +27,9 @@
         <div class="row mb-3">
             <label class="col-form-label col-sm-2" for="name">Name</label>
             <div class="col-sm-10">
-                <input class="form-control" id="name" name="name" placeholder="Name">
-                <div class="text-muted" id="name-validation">
-                    <p class="mb-0">Name must be between 3-50 characters</p>
+                <input class="form-control" id="name" name="name" placeholder="Name" required>
+                <div class="invalid-feedback text-muted" id="name-validation">
+                    <p class="mb-0">Name must be at most 50 characters.</p>
                 </div>
             </div>
         </div>
@@ -37,8 +37,8 @@
         <div class="row mb-3">
             <label class="col-form-label col-sm-2" for="username">Username</label>
             <div class="col-sm-10">
-                <input class="form-control" id="username" name="username" placeholder="Username">
-                <div class="text-muted" id="username-validation">
+                <input class="form-control" id="username" name="username" placeholder="Username" required>
+                <div class="invalid-feedback text-muted" id="username-validation">
                     <p class="mb-0">Username is taken</p>
                 </div>
             </div>
@@ -48,23 +48,20 @@
             <label class="col-form-label col-sm-2" for="email">Email (optional)</label>
             <div class="col-sm-10">
                 <input class="form-control" id="email" name="email" placeholder="Email">
-                <div class="text-muted" id="email-validation">
-                    <p class="mb-0">Email is invalid or taken</p>
-                </div>
             </div>
         </div>
 
         <div class="row mb-3">
             <label class="col-form-label col-sm-2" for="password">Password</label>
             <div class="col-sm-10">
-                <input class="form-control" id="password" name="password" type="password" placeholder="Password">
-                <div class="text-muted" id="password-validation">
+                <input class="form-control" id="password" name="password" type="password" placeholder="Password" required>
+                <div class="invalid-feedback text-muted" id="password-validation">
                     <p class="mb-0">Password must contain:</p>
                     <ul>
-                        <li>At least 8 characters</li>
-                        <li>At least 1 lowercase character</li>
-                        <li>At least 1 uppercase character</li>
-                        <li>At least 1 number or special character</li>
+                        <li>At least 8 characters.</li>
+                        <li>At least 1 lowercase character.</li>
+                        <li>At least 1 uppercase character.</li>
+                        <li>At least 1 number and special character.</li>
                     </ul>
                 </div>
             </div>
