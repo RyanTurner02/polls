@@ -72,6 +72,8 @@ function login($username, $password, $rememberMe)
 
 <div class="container mb-3">
     <form action="" method="post" name="login-form">
+        <h1 class="text-center mb-3">Welcome back.</h1>
+
         <div class="row mb-3">
             <label class="col-form-label col-sm-2" for="username">Username or Email</label>
             <div class="col-sm-10">
