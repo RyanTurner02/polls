@@ -25,14 +25,22 @@ function login($username, $password, $rememberMe)
 
     $result = $statement->get_result();
 
-    if (mysqli_num_rows($result) == 0) { // check for empty row
-        echo "Invalid Login";
-    } else { // row is not empty
-        while ($row = mysqli_fetch_row($result)) { // print row
-            printf("%s %s %s\n", $row[0], $row[1], $row[2]);
-        }
-    }
+    if (mysqli_num_rows($result) == 0) { // check for user not found (empty row)
+        header("Location: login.html");
+    } else { // user found (row is not empty)
+        $cookieName = "user_session";
+        $cookieValue = "value";
+        $cookiePath = "/";
 
-//    header("Location: index.html");
-//    exit;
+        if ($rememberMe == 1) {
+            $cookieExpiration = time() + 60 * 60 * 24 * 30; // set the expiration for 30 days
+        } else {
+            $cookieExpiration = time() + 60 * 60 * 24 * 7; // set the expiration for 7 days
+        }
+
+        setcookie($cookieName, $cookieValue, $cookieExpiration, $cookiePath);
+
+        header("Location: index.html");
+        exit;
+    }
 }
