@@ -35,6 +35,17 @@
             </div>
         </div>
 
+        <div class="option row mb-3">
+            <label class="col-form-label col-sm-2" for="num-options">Number of Options</label>
+            <div class="col-sm-10">
+                <select class="form-select" id="num-options">
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+        </div>
+
         <div id="poll-options">
             <div class="option row mb-3">
                 <label class="col-form-label col-sm-2" for="option1">Option 1</label>
@@ -49,10 +60,23 @@
                     <input class="form-control" id="option2" required>
                 </div>
             </div>
+
+            <div class="option row mb-3">
+                <label class="col-form-label col-sm-2" for="option3">Option 3</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="option3">
+                </div>
+            </div>
+
+            <div class="option row mb-3">
+                <label class="col-form-label col-sm-2" for="option4">Option 4</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="option4">
+                </div>
+            </div>
         </div>
 
-        <input class="btn btn-primary " id="add" type="button" value="Add option">
-        <input class="btn btn-primary" id="create" type="submit" value="Create poll">
+        <input class="btn btn-primary" id="create" name="create-poll" type="submit" value="Create poll">
     </form>
 </div>
 </body>
