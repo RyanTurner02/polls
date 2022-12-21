@@ -1,6 +1,13 @@
 <?php
 
-
+if (isset($_POST["create-poll"])) {
+    $pollTitle = $_POST["poll-title"];
+    $numOptions = $_POST["num-options"];
+    $option1 = $_POST["option1"];
+    $option2 = $_POST["option2"];
+    $option3 = $_POST["option3"];
+    $option4 = $_POST["option4"];
+}
 
 ?>
 
@@ -30,17 +37,17 @@
 <div class="container mb-3">
     <h1 class="text-center">Create a Poll</h1>
     <form action="" method="post" name="create-poll-form">
-        <div class="row mb-3" id="poll-title">
-            <label class="col-form-label col-sm-2" for="title">Poll Title</label>
+        <div class="option row mb-3">
+            <label class="col-form-label col-sm-2" for="poll-title">Poll Title</label>
             <div class="col-sm-10">
-                <input class="form-control" id="title" placeholder="Poll Title" required>
+                <input class="form-control" id="poll-title" name="poll-title" placeholder="Poll Title" required>
             </div>
         </div>
 
         <div class="option row mb-3">
             <label class="col-form-label col-sm-2" for="num-options">Number of Options</label>
             <div class="col-sm-10">
-                <select class="form-select" id="num-options">
+                <select class="form-select" id="num-options" name="num-options">
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
@@ -48,33 +55,31 @@
             </div>
         </div>
 
-        <div id="poll-options">
-            <div class="option row mb-3" id="option1-div">
-                <label class="col-form-label col-sm-2" for="option1">Option 1</label>
-                <div class="col-sm-10">
-                    <input class="form-control" id="option1" placeholder="Option 1" required>
-                </div>
+        <div class="option row mb-3" id="option1-div">
+            <label class="col-form-label col-sm-2" for="option1">Option 1</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="option1" name="option1" placeholder="Option 1" required>
             </div>
+        </div>
 
-            <div class="option row mb-3" id="option2-div">
-                <label class="col-form-label col-sm-2" for="option2">Option 2</label>
-                <div class="col-sm-10">
-                    <input class="form-control" id="option2" placeholder="Option 2" required>
-                </div>
+        <div class="option row mb-3" id="option2-div">
+            <label class="col-form-label col-sm-2" for="option2">Option 2</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="option2" name="option2" placeholder="Option 2" required>
             </div>
+        </div>
 
-            <div class="option row mb-3" id="option3-div">
-                <label class="col-form-label col-sm-2" for="option3">Option 3</label>
-                <div class="col-sm-10">
-                    <input class="form-control" id="option3" placeholder="Option 3">
-                </div>
+        <div class="option row mb-3" id="option3-div">
+            <label class="col-form-label col-sm-2" for="option3">Option 3</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="option3" name="option3" placeholder="Option 3">
             </div>
+        </div>
 
-            <div class="option row mb-3" id="option4-div">
-                <label class="col-form-label col-sm-2" for="option4">Option 4</label>
-                <div class="col-sm-10">
-                    <input class="form-control" id="option4" placeholder="Option 4">
-                </div>
+        <div class="option row mb-3" id="option4-div">
+            <label class="col-form-label col-sm-2" for="option4">Option 4</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="option4" name="option4" placeholder="Option 4">
             </div>
         </div>
 
