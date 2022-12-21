@@ -1,5 +1,12 @@
 <?php
 
+// redirect if user is already logged in
+if (isset($_COOKIE["user_token"])) {
+    echo "Logged In";
+    header("Location: index.html");
+    exit;
+}
+
 if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];

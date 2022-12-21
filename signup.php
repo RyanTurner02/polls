@@ -1,5 +1,12 @@
 <?php
 
+// redirect if user is already logged in
+if (isset($_COOKIE["user_token"])) {
+    echo "Logged In";
+    header("Location: index.html");
+    exit;
+}
+
 if (isset($_POST["sign-up"])) {
     $name = $_POST["name"];
     $username = $_POST["username"];
@@ -73,7 +80,7 @@ function createAccount($name, $username, $email, $password)
         <div class="row mb-3">
             <label class="col-form-label col-sm-2" for="name">Name</label>
             <div class="col-sm-10">
-                <input class="form-control" id="name" name="name" placeholder="Name" required>
+                <input class="form-control" id="name" name="name" placeholder="Name">
                 <div class="invalid-feedback text-muted" id="name-validation">
                     <p class="mb-0">Name must be at most 50 characters.</p>
                 </div>
