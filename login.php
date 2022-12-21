@@ -30,17 +30,14 @@ function login($username, $password, $rememberMe)
     if (mysqli_num_rows($result) == 0) { // check for user not found (empty row)
         header("Location: login.php?error=invalid+login");
     } else { // user found (row is not empty)
-        $cookieName = "user_session";
-        $cookieValue = "value";
-        $cookiePath = "/";
-
         if ($rememberMe == 1) {
             $cookieExpiration = time() + 60 * 60 * 24 * 30; // set the expiration for 30 days
         } else {
             $cookieExpiration = time() + 60 * 60 * 24 * 7; // set the expiration for 7 days
         }
 
-        setcookie($cookieName, $cookieValue, $cookieExpiration, $cookiePath);
+        $token = uniqid();
+        setcookie("user_token", $token, $cookieExpiration, "/");
 
         header("Location: index.html");
     }
