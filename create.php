@@ -31,7 +31,7 @@
         <div class="row mb-3" id="poll-title">
             <label class="col-form-label col-sm-2" for="title">Poll Title</label>
             <div class="col-sm-10">
-                <input class="form-control" id="title" required>
+                <input class="form-control" id="title" placeholder="Poll Title" required>
             </div>
         </div>
 
@@ -50,28 +50,28 @@
             <div class="option row mb-3">
                 <label class="col-form-label col-sm-2" for="option1">Option 1</label>
                 <div class="col-sm-10">
-                    <input class="form-control" id="option1" required>
+                    <input class="form-control" id="option1" placeholder="Option 1" required>
                 </div>
             </div>
 
             <div class="option row mb-3">
                 <label class="col-form-label col-sm-2" for="option2">Option 2</label>
                 <div class="col-sm-10">
-                    <input class="form-control" id="option2" required>
+                    <input class="form-control" id="option2" placeholder="Option 2" required>
                 </div>
             </div>
 
             <div class="option row mb-3">
                 <label class="col-form-label col-sm-2" for="option3">Option 3</label>
                 <div class="col-sm-10">
-                    <input class="form-control" id="option3">
+                    <input class="form-control" id="option3" placeholder="Option 3">
                 </div>
             </div>
 
             <div class="option row mb-3">
                 <label class="col-form-label col-sm-2" for="option4">Option 4</label>
                 <div class="col-sm-10">
-                    <input class="form-control" id="option4">
+                    <input class="form-control" id="option4" placeholder="Option 4">
                 </div>
             </div>
         </div>
