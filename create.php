@@ -29,8 +29,17 @@ if (isset($_POST["create-poll"])) {
         <a class="p-2" href="create.php">Create Poll</a>
     </div>
     <div class="d-flex flex-row">
-        <a class="p-2" href="login.php">Login</a>
-        <a class="p-2" href="signup.php">Sign up</a>
+        <?php
+
+        if (isset($_COOKIE["user_token"])) { // user is logged in
+            echo '<a class="p-2" href="myprofile.php">My Profile</a>';
+            echo '<a class="p-2" href="signout.php">Sign out</a>';
+        } else { // user is not logged in
+            echo '<a class="p-2" href="login.php">Login</a>';
+            echo '<a class="p-2" href="signup.php">Sign up</a>';
+        }
+
+        ?>
     </div>
 </div>
 
