@@ -27,26 +27,40 @@ function login($username, $password, $rememberMe)
     $mysqli = mysqli_connect($configArr["hostname"], $configArr["username"], $configArr["password"], $configArr["database"]);
 
     // check username and password
-    $statement = $mysqli->prepare("SELECT username, email, `password` FROM account WHERE (username=? OR email=?) AND password=?;");
+    $statement = $mysqli->prepare("SELECT user_id, username, email, `password` FROM account WHERE (username=? OR email=?) AND password=?;");
     $statement->bind_param("sss", $username, $username, $password);
     $statement->execute();
 
     $result = $statement->get_result();
 
-    if (mysqli_num_rows($result) == 0) { // check for user not found (empty row)
+    // redirect if the user is not found
+    if (mysqli_num_rows($result) == 0) {
         header("Location: login.php?error=invalid+login");
-    } else { // user found (row is not empty)
-        if ($rememberMe == 1) {
-            $cookieExpiration = time() + 60 * 60 * 24 * 30; // set the expiration for 30 days
-        } else {
-            $cookieExpiration = time() + 60 * 60 * 24 * 7; // set the expiration for 7 days
-        }
-
-        $token = uniqid();
-        setcookie("user_token", $token, $cookieExpiration, "/");
-
-        header("Location: index.php");
+        exit;
     }
+
+    if ($rememberMe == 1) {
+        $expirationDate = time() + 60 * 60 * 24 * 30; // set the expiration for 30 days
+    } else {
+        $expirationDate = time() + 60 * 60 * 24 * 7; // set the expiration for 7 days
+    }
+
+    $userToken = uniqid();
+    setcookie("user_token", $userToken, $expirationDate, "/");
+
+    // get user info and store it into an array
+    $userInfo = mysqli_fetch_assoc($result);
+    $userID = $userInfo["user_id"];
+
+    // format the expiration date
+    $expirationDate = date("Y-m-d H:i:s", $expirationDate);
+
+    // store the session info in the session table
+    $statement = $mysqli->prepare("INSERT INTO session(user_id, user_token, expiration_date) VALUES(?, ?, ?)");
+    $statement->bind_param("iss", $userID, $userToken, $expirationDate);
+    $statement->execute();
+
+    header("Location: index.php");
     exit;
 }
 
