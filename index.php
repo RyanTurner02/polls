@@ -1,5 +1,51 @@
 <?php
 
+function echoPoll($row)
+{
+    $title = $row["title"];
+    $option1 = $row["option1"];
+    $option2 = $row["option2"];
+    $option3 = $row["option3"];
+    $option4 = $row["option4"];
+    $option1Votes = $row["option1_votes"];
+    $option2Votes = $row["option2_votes"];
+    $option3Votes = $row["option3_votes"];
+    $option4Votes = $row["option4_votes"];
+    $likes = $row["likes"];
+
+    echo '<div class="poll">';
+    echo "<h1 class='text-center'>$title</h1>";
+
+    echo "<p>Option 1: $option1</p>";
+    echo "<p>$option1Votes votes</p>";
+
+    echo "<br>";
+
+    echo "<p>Option 2: $option2</p>";
+    echo "<p>$option2Votes votes</p>";
+
+    echo "<br>";
+
+    if (!empty($option3)) {
+        echo "<p>Option 3: $option3</p>";
+        echo "<p>$option3Votes votes</p>";
+        echo "<br>";
+    }
+
+    if (!empty($option4)) {
+        echo "<p>Option 4: $option4</p>";
+        echo "<p>$option4Votes votes</p>";
+        echo "<br>";
+    }
+
+    echo "<p>$likes likes</p>";
+
+    echo "<br>";
+    echo "<hr>";
+
+    echo '</div>';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +76,33 @@
 
         ?>
     </div>
+</div>
+
+<div class="container">
+    <?php
+
+    // connect to the database
+    $fileName = "config.ini";
+    $sampleFileName = "config-sample.ini";
+
+    if (!file_exists($fileName)) {
+        throw new Exception("\"$fileName\" not found. See \"$sampleFileName\" for more details.");
+    }
+
+    $configArr = parse_ini_file($fileName);
+    $mysqli = mysqli_connect($configArr["hostname"], $configArr["username"], $configArr["password"], $configArr["database"]);
+
+    // get the polls
+    $statement = $mysqli->prepare("SELECT * FROM poll");
+    $statement->execute();
+    $result = $statement->get_result();
+
+    // echo each poll into the webpage
+    while ($row = mysqli_fetch_assoc($result)) {
+        echoPoll($row);
+    }
+
+    ?>
 </div>
 
 <div class="container">
