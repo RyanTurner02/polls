@@ -97,8 +97,8 @@ function echoPoll($row)
     $configArr = parse_ini_file($fileName);
     $mysqli = mysqli_connect($configArr["hostname"], $configArr["username"], $configArr["password"], $configArr["database"]);
 
-    // get the polls
-    $statement = $mysqli->prepare("SELECT * FROM poll");
+    // get the newest polls
+    $statement = $mysqli->prepare("SELECT * FROM poll ORDER BY poll_id DESC");
     $statement->execute();
     $result = $statement->get_result();
 
