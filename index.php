@@ -17,7 +17,7 @@ function echoPoll($row)
     $option4Votes = $row["option4_votes"];
     $likes = $row["likes"];
 
-    echo '<div class="poll">';
+    echo '<div class="poll container d-flex flex-column col-11 col-sm-8 col-md-5">';
     echo "<h1 class='text-center'>$title</h1>";
 
     echo '<div class="creation-info">';
@@ -49,6 +49,7 @@ function echoPoll($row)
     echo '</div>';
 
     echo "<hr>";
+    echo '</div>';
     echo '</div>';
 }
 
@@ -89,32 +90,30 @@ function echoPoll($row)
     </div>
 </div>
 
-<div class="container">
-    <?php
+<?php
 
-    // connect to the database
-    $fileName = "config.ini";
-    $sampleFileName = "config-sample.ini";
+// connect to the database
+$fileName = "config.ini";
+$sampleFileName = "config-sample.ini";
 
-    if (!file_exists($fileName)) {
-        throw new Exception("\"$fileName\" not found. See \"$sampleFileName\" for more details.");
-    }
+if (!file_exists($fileName)) {
+    throw new Exception("\"$fileName\" not found. See \"$sampleFileName\" for more details.");
+}
 
-    $configArr = parse_ini_file($fileName);
-    $mysqli = mysqli_connect($configArr["hostname"], $configArr["username"], $configArr["password"], $configArr["database"]);
+$configArr = parse_ini_file($fileName);
+$mysqli = mysqli_connect($configArr["hostname"], $configArr["username"], $configArr["password"], $configArr["database"]);
 
-    // get the newest polls
-    $statement = $mysqli->prepare(" SELECT * FROM poll LEFT JOIN account ON poll.user_id = account.user_id ORDER BY poll_id DESC;");
-    $statement->execute();
-    $result = $statement->get_result();
+// get the newest polls
+$statement = $mysqli->prepare(" SELECT * FROM poll LEFT JOIN account ON poll.user_id = account.user_id ORDER BY poll_id DESC;");
+$statement->execute();
+$result = $statement->get_result();
 
-    // echo each poll into the webpage
-    while ($row = mysqli_fetch_assoc($result)) {
-        echoPoll($row);
-    }
+// echo each poll into the webpage
+while ($row = mysqli_fetch_assoc($result)) {
+    echoPoll($row);
+}
 
-    ?>
-</div>
+?>
 
 <div class="container">
 </div>
