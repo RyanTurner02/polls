@@ -16,33 +16,31 @@ function echoPoll($row)
     echo '<div class="poll">';
     echo "<h1 class='text-center'>$title</h1>";
 
-    echo "<p>Option 1: $option1</p>";
-    echo "<p>$option1Votes votes</p>";
+    echo '<div class="row mb-3">';
+    echo '<button class="btn btn-outline-dark" id="first-option">' . $option1 . '</button>';
+    echo '</div>';
 
-    echo "<br>";
-
-    echo "<p>Option 2: $option2</p>";
-    echo "<p>$option2Votes votes</p>";
-
-    echo "<br>";
+    echo '<div class="row mb-3">';
+    echo '<button class="btn btn-outline-dark" id="second-option">' . $option2 . '</button>';
+    echo '</div>';
 
     if (!empty($option3)) {
-        echo "<p>Option 3: $option3</p>";
-        echo "<p>$option3Votes votes</p>";
-        echo "<br>";
+        echo '<div class="row mb-3">';
+        echo '<button class="btn btn-outline-dark" id="third-option">' . $option3 . '</button>';
+        echo '</div>';
     }
 
     if (!empty($option4)) {
-        echo "<p>Option 4: $option4</p>";
-        echo "<p>$option4Votes votes</p>";
-        echo "<br>";
+        echo '<div class="row mb-3">';
+        echo '<button class="btn btn-primary" id="fourth-option">' . $option4 . '</button>';
+        echo '</div>';
     }
 
-    echo "<p>$likes likes</p>";
+    echo '<div class="mb-3 d-flex justify-content-end">';
+    echo '<button class="btn btn-danger" id="like-button">' . $likes . ' likes</button>';
+    echo '</div>';
 
-    echo "<br>";
     echo "<hr>";
-
     echo '</div>';
 }
 
