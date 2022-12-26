@@ -3,10 +3,14 @@
 function echoPoll($row)
 {
     $title = $row["title"];
+    $name = $row["name"];
+    $username = $row["username"];
+
     $option1 = $row["option1"];
     $option2 = $row["option2"];
     $option3 = $row["option3"];
     $option4 = $row["option4"];
+
     $option1Votes = $row["option1_votes"];
     $option2Votes = $row["option2_votes"];
     $option3Votes = $row["option3_votes"];
@@ -15,6 +19,10 @@ function echoPoll($row)
 
     echo '<div class="poll">';
     echo "<h1 class='text-center'>$title</h1>";
+
+    echo '<div class="creation-info">';
+    echo '<h6 class="text-black">' . "$name" . " " . '<span class="text-muted">' . "@$username" . '</span>' . '</h6>';
+    echo '</div>';
 
     echo '<div class="row mb-3">';
     echo '<button class="btn btn-outline-dark" id="first-option">' . $option1 . '</button>';
@@ -96,7 +104,7 @@ function echoPoll($row)
     $mysqli = mysqli_connect($configArr["hostname"], $configArr["username"], $configArr["password"], $configArr["database"]);
 
     // get the newest polls
-    $statement = $mysqli->prepare("SELECT * FROM poll ORDER BY poll_id DESC");
+    $statement = $mysqli->prepare(" SELECT * FROM poll LEFT JOIN account ON poll.user_id = account.user_id ORDER BY poll_id DESC;");
     $statement->execute();
     $result = $statement->get_result();
 
