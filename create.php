@@ -1,12 +1,55 @@
 <?php
 
+// redirect if the user is not logged in
+if (!isset($_COOKIE["user_token"])) {
+    header("Location: login.php");
+    exit;
+}
+
+// create a poll if the user submits the form
 if (isset($_POST["create-poll"])) {
     $pollTitle = $_POST["poll-title"];
-    $numOptions = $_POST["num-options"];
     $option1 = $_POST["option1"];
     $option2 = $_POST["option2"];
     $option3 = $_POST["option3"];
     $option4 = $_POST["option4"];
+
+    createPoll($pollTitle, $option1, $option2, $option3, $option4);
+}
+
+function createPoll($pollTitle, $option1, $option2, $option3, $option4)
+{
+    // connect to the database
+    $fileName = "config.ini";
+    $sampleFileName = "config-sample.ini";
+
+    if (!file_exists($fileName)) {
+        throw new Exception("\"$fileName\" not found. See \"$sampleFileName\" for more details.");
+    }
+
+    $configArr = parse_ini_file($fileName);
+    $mysqli = mysqli_connect($configArr["hostname"], $configArr["username"], $configArr["password"], $configArr["database"]);
+
+    // get the user id
+    $userToken = $_COOKIE["user_token"];
+
+    $statement = $mysqli->prepare("SELECT user_id FROM session WHERE user_token=?");
+    $statement->bind_param("s", $userToken);
+    $statement->execute();
+
+    $result = $statement->get_result();
+    $userID = mysqli_fetch_assoc($result)["user_id"];
+
+    // create the poll
+    $startingCount = 0;
+    $query = "INSERT INTO poll(user_id, title, option1, option2, option3, option4, option1_votes, option2_votes, option3_votes, option4_votes, likes)" .
+        "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    $statement = $mysqli->prepare($query);
+    $statement->bind_param("isssssiiiii", $userID, $pollTitle, $option1, $option2, $option3, $option4, $startingCount, $startingCount, $startingCount, $startingCount, $startingCount);
+    $statement->execute();
+
+    header("Location: index.php");
+    exit;
 }
 
 ?>
