@@ -32,7 +32,7 @@ function echoPoll($row)
 
     if (!empty($option4)) {
         echo '<div class="row mb-3">';
-        echo '<button class="btn btn-primary" id="fourth-option">' . $option4 . '</button>';
+        echo '<button class="btn btn-outline-dark" id="fourth-option">' . $option4 . '</button>';
         echo '</div>';
     }
 
