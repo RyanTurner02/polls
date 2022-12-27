@@ -25,22 +25,22 @@ function echoPoll($row)
     echo '</div>';
 
     echo '<div class="row mb-3">';
-    echo '<button class="btn btn-outline-dark" id="first-option">' . $option1 . '</button>';
+    echo '<button class="btn btn-outline-dark" id="first-option">' . getPollOptionDOM($option1, $option1Votes) . '</button>';
     echo '</div>';
 
     echo '<div class="row mb-3">';
-    echo '<button class="btn btn-outline-dark" id="second-option">' . $option2 . '</button>';
+    echo '<button class="btn btn-outline-dark" id="second-option">' . getPollOptionDOM($option2, $option2Votes) . '</button>';
     echo '</div>';
 
     if (!empty($option3)) {
         echo '<div class="row mb-3">';
-        echo '<button class="btn btn-outline-dark" id="third-option">' . $option3 . '</button>';
+        echo '<button class="btn btn-outline-dark" id="third-option">' . getPollOptionDOM($option3, $option3Votes) . '</button>';
         echo '</div>';
     }
 
     if (!empty($option4)) {
         echo '<div class="row mb-3">';
-        echo '<button class="btn btn-outline-dark" id="fourth-option">' . $option4 . '</button>';
+        echo '<button class="btn btn-outline-dark" id="fourth-option">' . getPollOptionDOM($option3, $option3Votes) . '</button>';
         echo '</div>';
     }
 
@@ -51,6 +51,12 @@ function echoPoll($row)
     echo "<hr>";
     echo '</div>';
     echo '</div>';
+}
+
+function getPollOptionDOM($option, $optionVotes)
+{
+    return '<div class="d-flex justify-content-between">' .
+        $option . '<span hidden>' . $optionVotes . '</span>';
 }
 
 ?>
