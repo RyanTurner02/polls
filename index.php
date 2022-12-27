@@ -40,7 +40,7 @@ function echoPoll($row)
 
     if (!empty($option4)) {
         echo '<div class="row mb-3">';
-        echo '<button class="btn btn-outline-dark" id="fourth-option">' . getPollOptionDOM($option3, $option3Votes) . '</button>';
+        echo '<button class="btn btn-outline-dark" id="fourth-option">' . getPollOptionDOM($option4, $option4Votes) . '</button>';
         echo '</div>';
     }
 
